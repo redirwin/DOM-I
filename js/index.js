@@ -41,20 +41,8 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
-
-let navigation = document.querySelectorAll('nav a');
-navigation[0].textContent = siteContent['nav']["nav-item-1"];
-navigation[1].textContent = siteContent['nav']["nav-item-2"];
-navigation[2].textContent = siteContent['nav']["nav-item-3"];
-navigation[3].textContent = siteContent['nav']["nav-item-4"];
-navigation[4].textContent = siteContent['nav']["nav-item-5"];
-navigation[5].textContent = siteContent['nav']["nav-item-6"];
-// Need to refactor? Is there a way to loop through this instead? 
-// See: https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes
-
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
 let snippet = document.getElementById("cta-img");
 snippet.setAttribute('src', siteContent['cta']['img-src']);
@@ -112,3 +100,21 @@ contactEmail.textContent = siteContent['contact']['email'];
 
 let footerText = document.querySelector('footer p');
 footerText.textContent = siteContent['footer']['copyright'];
+
+let navSection = document.querySelector('nav');
+
+let navigation = document.querySelectorAll('nav a');
+
+navigation.forEach(function (link, i) {
+  link.textContent = siteContent.nav[`nav-item-${i + 1}`];
+})
+
+let firstLink = "Added Before";
+let lastLink = "Added After";
+
+navSection.prepend(firstLink);
+navSection.append(lastLink);
+
+navigation.forEach(function (link) {
+  link.style.color = "green";
+});
